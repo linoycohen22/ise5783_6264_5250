@@ -16,7 +16,7 @@ public class Sphere {
 		radius=r;
 	}
 
-	Vector getNormal(Point p) {
+   Vector getNormal(Point p) {
 		return null;
 	}
 

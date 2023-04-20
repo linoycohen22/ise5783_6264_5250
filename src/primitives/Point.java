@@ -2,7 +2,7 @@ package primitives;
 
 public class Point {
 
-	final Double3 xyz;
+	public final Double3 xyz;
 
 	/**
 	 * point constructor
@@ -49,13 +49,19 @@ public class Point {
 		return pReturn;
 	}
 
+	
 	/**
 	 * returns the result of the difference between point 'p' and the current point, which is a vector from 'p' to the current
 	 * @param p
 	 * @return
 	 */
-	public Vector subtract(Point p) {
+	/*public Vector subtract(Point p) {
 		Double3 d3Ret = p.xyz.subtract(this.xyz);
+		Vector vReturn = new Vector(d3Ret.d1, d3Ret.d2, d3Ret.d3);
+		return vReturn;
+	}*/
+	public Vector subtract(Point p) {
+		Double3 d3Ret = this.xyz.subtract(p.xyz);
 		Vector vReturn = new Vector(d3Ret.d1, d3Ret.d2, d3Ret.d3);
 		return vReturn;
 	}

@@ -1,5 +1,7 @@
 package primitives;
 
+import static java.lang.System.out;
+
 public class Vector extends Point{
 
 	
@@ -104,6 +106,12 @@ public class Vector extends Point{
 		double y = this.xyz.d2 / len;
 		double z = this.xyz.d3 / len;		
 		Vector vReturn = new Vector(x, y, z);
+		return vReturn;
+	}
+	
+	public Vector subtract(Vector v) {
+		Double3 d3Ret = this.xyz.subtract(v.xyz);
+		Vector vReturn = new Vector(d3Ret.d1, d3Ret.d2, d3Ret.d3);
 		return vReturn;
 	}
 }
