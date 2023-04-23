@@ -2,15 +2,15 @@
  * 
  */
 package unittests;
-import primitives.Point;
-import primitives.Vector;
-import primitives.Ray;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import primitives.*;
 
 /**
+ * Tests of class {@link primitives.Point}
  * @author linoi
- *
  */
-
 class PointTests {
 
 	/**
@@ -18,104 +18,56 @@ class PointTests {
 	 */
 	
 	void testAdd() {
-		// Create a Point object with xyz values (1, 2, 3)
-	    Point point = new Point(1, 2, 3);
+		Point p1 = new Point(1, 2, 3);
 
-	    // Create a Vector object with xyz values (4, 5, 6)
-	    Vector vector = new Vector(4, 5, 6);
+        /* ============ Equivalence Partitions Tests ============== */
 
-	    // Call the add method
-	    Point result = point.add(vector);
-
-	    // Expected result
-	    double expectedX = point.xyz.d1 + vector.xyz.d1;
-	    double expectedY = point.xyz.d2 + vector.xyz.d2;
-	    double expectedZ = point.xyz.d3 + vector.xyz.d3;
-
-	    // Test case 1: Check x component
-	    System.out.println("Test case 1: Check x component");
-	    System.out.println("Expected result: " + expectedX);
-	    System.out.println("Actual result: " + result.xyz.d1);
-	    System.out.println("Test result: " + (result.xyz.d1 == expectedX ? "PASS" : "FAIL"));
-	    System.out.println();
-
-	    // Test case 2: Check y component
-	    System.out.println("Test case 2: Check y component");
-	    System.out.println("Expected result: " + expectedY);
-	    System.out.println("Actual result: " + result.xyz.d2);
-	    System.out.println("Test result: " + (result.xyz.d2 == expectedY ? "PASS" : "FAIL"));
-	    System.out.println();
-
-	    // Test case 3: Check z component
-	    System.out.println("Test case 3: Check z component");
-	    System.out.println("Expected result: " + expectedZ);
-	    System.out.println("Actual result: " + result.xyz.d3);
-	    System.out.println("Test result: " + (result.xyz.d3 == expectedZ ? "PASS" : "FAIL"));
-	    System.out.println();
+        /* TC01: Add valid point to valid vector. */
+        assertEquals(p1.add(new Vector(-1, -2, -3)),
+                     new Point(0, 0, 0),
+                     "ERROR: Point + Vector doesn't work correctly");
 	}
-	
 
 	/**
 	 * Test method for {@link primitives.Point#subtract(primitives.Point)}.
 	 */
 	
 	void testSubtract() {
-		 // Create a Point object with xyz values (1, 2, 3)
-	    Point point1 = new Point(1, 2, 3);
+		Point p1 = new Point(1, 2, 3);
 
-	    // Create another Point object with xyz values (4, 5, 6)
-	    Point point2 = new Point(4, 5, 6);
+        /* ============ Equivalence Partitions Tests ============== */
 
-	    // Expected result
-	    double expectedX = point1.xyz.d1 - point2.xyz.d1;
-	    double expectedY = point1.xyz.d2 - point2.xyz.d2;
-	    double expectedZ = point1.xyz.d3 - point2.xyz.d3;
+        /* TC01: Subtract valid point to valid vector. */
+        assertEquals(new Vector(1, 1, 1),
+                     new Point(2, 3, 4).subtract(p1),
+                     "ERROR: Point - Point doesn't work correctly");
 
-	    // Call the subtract method
-	    Vector result = point1.subtract(point2);
+        /* =============== Boundary Values Tests ================== */
 
-	    // Test case 1: Check x component
-	    System.out.println("Test case 1: Check x component");
-	    System.out.println("Expected result: " + expectedX);
-	    System.out.println("Actual result: " + result.xyz.d1);
-	    System.out.println("Test result: " + (result.xyz.d1 == expectedX ? "PASS" : "FAIL"));
-	    System.out.println();
-
-	    // Test case 2: Check y component
-	    System.out.println("Test case 2: Check y component");
-	    System.out.println("Expected result: " + expectedY);
-	    System.out.println("Actual result: " + result.xyz.d2);
-	    System.out.println("Test result: " + (result.xyz.d2 == expectedY ? "PASS" : "FAIL"));
-	    System.out.println();
-
-	    // Test case 3: Check z component
-	    System.out.println("Test case 3: Check z component");
-	    System.out.println("Expected result: " + expectedZ);
-	    System.out.println("Actual result: " + result.xyz.d3);
-	    System.out.println("Test result: " + (result.xyz.d3 == expectedZ ? "PASS" : "FAIL"));
-	    System.out.println();
+        /* TC02: Check if the zero vector result handle correctly */
+        assertThrows(IllegalArgumentException.class,
+                     () -> p1.subtract(p1),
+                     "ERROR: Point - Point doesn't work correctly when the result is zero vector");
 	}
 	/**
 	 * Test method for {@link primitives.Point#distanceSquared(primitives.Point)}.
 	 */
 	
 	void testDistanceSquared() {
-		// Create a Point object with xyz values (1, 2, 3)
-	    Point point1 = new Point(1, 2, 3);
+		 /* ============ Equivalence Partitions Tests ============== */
 
-	    // Create another Point object with xyz values (4, 5, 6)
-	    Point point2 = new Point(4, 5, 6);
+        Point p1 = new Point(1, 2, 3);
+        Point p2 = new Point(5, 4, 32);
 
-	    // Test case 1: Calculate squared distance between Point1 and Point2
-	    double result = point1.distanceSquared(point2);
-	    double expected = Math.pow(point1.xyz.d1 - point2.xyz.d1, 2)
-	            + Math.pow(point1.xyz.d2 - point2.xyz.d2, 2)
-	            + Math.pow(point1.xyz.d3 - point2.xyz.d3, 2);
-	    System.out.println("Test case 1: Calculate squared distance between Point1 and Point2");
-	    System.out.println("Expected result: " + expected);
-	    System.out.println("Actual result: " + result);
-	    System.out.println("Test result: " + (result == expected ? "PASS" : "FAIL"));
-	    System.out.println();
+        /* TC01: Check the distance squared to two valid points */
+        assertTrue(Util.isZero(p1.distanceSquared(p2) - 861),
+                   "ERROR: distanceSquared() doesn't work correctly");
+
+        /* =============== Boundary Values Tests ================== */
+
+        /* TC02: Check the distance squared to the same point. */
+        assertTrue(Util.isZero(p1.distanceSquared(p1) - 0),
+                   "ERROR: distanceSquared() doesn't work correctly if they are the same point");
 	}
 	
 
@@ -124,24 +76,20 @@ class PointTests {
 	 */
 	
 	void testDistance() {
-		// Create a Point object with xyz values (1, 2, 3)
-	    Point point1 = new Point(1, 2, 3);
+		Point p1 = new Point(1, 2, 3);
+        Point p2 = new Point(5, 4, 32);
 
-	    // Create another Point object with xyz values (4, 5, 6)
-	    Point point2 = new Point(4, 5, 6);
+        /* ============ Equivalence Partitions Tests ============== */
 
-	    // Call the distance method
-	    double result = point1.distance(point2);
+        /* TC01: Check with valid points. */
+        assertTrue(Util.isZero(p1.distance(p2) - 29.34280150224242),
+                   "ERROR: distance() doesn't work correctly");
 
-	    // Expected result
-	    double expected = Math.sqrt(point1.distanceSquared(point2));
+        /* =============== Boundary Values Tests ================== */
 
-	    // Test case 1: Check distance result
-	    System.out.println("Test case 1: Check distance result");
-	    System.out.println("Expected result: " + expected);
-	    System.out.println("Actual result: " + result);
-	    System.out.println("Test result: " + (result == expected ? "PASS" : "FAIL"));
-	    System.out.println();
+        /* TC02: Check the distance to the same point. */
+        assertTrue(Util.isZero(p1.distance(p1) - 0),
+                   "ERROR: distance() doesn't work correctly if they are the same point");
 	}
 
 }

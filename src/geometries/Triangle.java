@@ -11,7 +11,7 @@ public class Triangle extends Plane implements Geometry{
 	 * @param p2
 	 * @param p3
 	 */
-	Triangle(Point p1, Point p2, Point p3){
+	public Triangle(Point p1, Point p2, Point p3){
 		super(p1, p2, p3);
 	}
 

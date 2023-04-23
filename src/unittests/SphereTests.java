@@ -2,10 +2,14 @@
  * 
  */
 package unittests;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+
 import primitives.Point;
 import primitives.Vector;
 import primitives.Ray;
-
+import geometries.Sphere;
 
 
 /**
@@ -25,18 +29,15 @@ class SphereTests {
 	}
 
      void testGetNormal() {
-	    // Create a Point object for testing
-	    Point testPoint = new Point(3.0, 4.0,0.0); // Example: creating a Point with x = 3.0 and y = 4.0
+    	 Sphere sphere = new Sphere(new Point(0, 0, 0), 2);
+         Vector normalizeVector = new Vector(1.73, 0, 1).normalize();
+         Vector resultNormal = sphere.getNormal(new Point(1.73, 0, 1));
 
-	    // Call the getNormal() function with the testPoint
-	    Vector normalVector = getNormal(testPoint);
+         /* ============ Equivalence Partitions Tests ============== */
 
-	    // Check if the returned normalVector is not null
-	    if (normalVector != null) {
-	        System.out.println("Normal vector: " + normalVector.toString());
-	    } else {
-	        System.out.println("Error: Normal vector is null.");
-	    }
+         /* TC01: Check normal in specific point. */
+         assertTrue(normalizeVector.isSameNormal(resultNormal),
+                    "ERROR: getNormal() doesn't work correctly.");
 	}
 
 

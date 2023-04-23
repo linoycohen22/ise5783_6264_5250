@@ -11,12 +11,12 @@ public class Sphere {
 	/**
 	 * sphere constructor
 	 */
-	Sphere(Point p, double r){
+	public Sphere(Point p, double r){
 		center=p;
 		radius=r;
 	}
 
-   Vector getNormal(Point p) {
+	public Vector getNormal(Point p) {
 		return null;
 	}
 

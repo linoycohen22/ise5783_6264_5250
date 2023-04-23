@@ -12,7 +12,7 @@ public class Tube {
 	/**
 	 * tube constructor
 	 */
-	Tube(double rad, Ray ray){
+	public Tube(double rad, Ray ray){
 		this.radius=rad;
 		this.ray=ray;
 	}

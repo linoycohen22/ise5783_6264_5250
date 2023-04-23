@@ -3,9 +3,9 @@ package geometries;
 import primitives.Point;
 import primitives.Vector;
 import primitives.Ray;
-//an empty line
-public class Cylinder extends Tube implements Geometry{
 
+public class Cylinder extends Tube implements Geometry{
+//linoy
 	double height;
 
 	/**
@@ -14,7 +14,7 @@ public class Cylinder extends Tube implements Geometry{
 	 * @param rad
 	 * @param ray
 	 */
-	Cylinder(double h, double rad, Ray ray){
+	public Cylinder(double h, double rad, Ray ray){
 		super(rad, ray);
 		this.height=h;
 	}

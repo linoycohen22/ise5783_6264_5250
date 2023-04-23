@@ -2,6 +2,14 @@
  * 
  */
 package unittests;
+
+import static com.primitives.Util.isZero;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+
 import primitives.Point;
 import primitives.Vector;
 import primitives.Ray;
@@ -18,23 +26,23 @@ class VectorTests {
 	
 	void testAddVector() {
 		// Create a Vector object with xyz values (1, 2, 3)
-	    Vector vector1 = new Vector(1, 2, 3);
+		Vector p1 = new Vector(1, 2, 3);
+        Vector p2 = new Vector(-1, -2, -3);
+        Vector p3 = new Vector(2, 4, 7);
 
-	    // Create another Vector object with xyz values (4, 5, 6)
-	    Vector vector2 = new Vector(4, 5, 6);
+        /* ============ Equivalence Partitions Tests ============== */
 
-	    // Call the add method
-	    Vector result = vector1.add(vector2);
+        /* TC01: Add valid point to valid vector. */
+        assertEquals(new Vector(3, 6, 10),
+                     p1.add(p3),
+                     "ERROR: Vector + Vector does not work correctly");
 
-	    // Expected result
-	    Vector expected = new Vector(vector1.xyz.d1 + vector2.xyz.d1, vector1.xyz.d2 + vector2.xyz.d2, vector1.xyz.d3 + vector2.xyz.d3);
+        /* =============== Boundary Values Tests ================== */
 
-	    // Test case 1: Check x, y, z values of the result
-	    System.out.println("Test case 1: Check x, y, z values of the result");
-	    System.out.println("Expected result: x=" + expected.xyz.d1 + ", y=" + expected.xyz.d2 + ", z=" + expected.xyz.d3);
-	    System.out.println("Actual result: x=" + result.xyz.d1 + ", y=" + result.xyz.d2 + ", z=" + result.xyz.d3);
-	    System.out.println("Test result: " + (result.equals(expected) ? "PASS" : "FAIL"));
-	    System.out.println();	
+        /* TC02: Check if the zero vector result handle correctly */
+        assertThrows(IllegalArgumentException.class,
+                     () -> p1.add(p2),
+                     "ERROR: Vector + Vector doesn't work correctly in zero vector");	
 	    }
 
 	/**
@@ -42,93 +50,136 @@ class VectorTests {
 	 */
 	
 	void testScale() {
-		// Create a Vector object with xyz values (1, 2, 3)
-	    Vector vector = new Vector(1, 2, 3);
+		Vector p1 = new Vector(1, 2, 3);
 
-	    // Call the scale method with a scaling factor of 2.5
-	    double scaleFactor = 2.5;
-	    Vector result = vector.scale(scaleFactor);
+        /* ============ Equivalence Partitions Tests ============== */
 
-	    // Expected result
-	    Vector expected = new Vector(vector.xyz.d1 * scaleFactor, vector.xyz.d2 * scaleFactor, vector.xyz.d3 * scaleFactor);
+        /* TC01: Check correct values. */
+        assertEquals(new Vector(3.2, 6.4, 9.6),
+                     p1.scale(3.2),
+                     "ERROR: Vector * scalar does not work correctly");
 
-	    // Test case 1: Check x, y, z values of the result
-	    System.out.println("Test case 1: Check x, y, z values of the result");
-	    System.out.println("Expected result: x=" + expected.xyz.d1 + ", y=" + expected.xyz.d2 + ", z=" + expected.xyz.d3);
-	    System.out.println("Actual result: x=" + result.xyz.d1 + ", y=" + result.xyz.d2 + ", z=" + result.xyz.d3);
-	    System.out.println("Test result: " + (result.equals(expected) ? "PASS" : "FAIL"));
-	    System.out.println();
+        /* =============== Boundary Values Tests ================== */
 
-	    // Test case 2: Check if the original vector is unchanged
-	    System.out.println("Test case 2: Check if the original vector is unchanged");
-	    System.out.println("Original vector: x=" + vector.xyz.d1 + ", y=" + vector.xyz.d2 + ", z=" + vector.xyz.d3);
-	    System.out.println("Test result: " + (vector.equals(new Vector(1, 2, 3)) ? "PASS" : "FAIL"));
-	    System.out.println();	}
+        /* TC02: Check if the zero vector result handle correctly */
+        assertThrows(IllegalArgumentException.class,
+                     () -> p1.scale(0),
+                     "ERROR: Vector * scalar doesn't work correctly in zero vector");
+        }
 
 	/**
 	 * Test method for {@link primitives.Vector#crossProduct(primitives.Vector)}.
 	 */
 	
   void testCrossProduct() {
-	    // Create two Vector objects with xyz values
-        Vector vector1 = new Vector(1, 2, 3);
-        Vector vector2 = new Vector(4, 5, 6);
+	  Point a = new Point(1, 3, 9);
+      Point b = new Point(-4, -7, 0);
 
-	    // Call the crossProduct method with the two Vector objects
-	    Vector result = vector1.crossProduct(vector2);
+      Vector v1 = new Vector(1, 2, 3);
+      Vector v2 = new Vector(-1, -2, -3);
+      Vector v3 = new Vector(0, 3, -2);
 
-	    // Expected result
-	    double x = vector1.xyz.d2 * vector2.xyz.d3 - vector1.xyz.d3 * vector2.xyz.d2;
-	    double y = vector1.xyz.d3 * vector2.xyz.d1 - vector1.xyz.d1 * vector2.xyz.d3;
-	    double z = vector1.xyz.d1 * vector2.xyz.d2 - vector1.xyz.d2 * vector2.xyz.d1;
-	    Vector expected = new Vector(x, y, z);
+      Vector vr = v1.crossProduct(v3);
+      Vector u = v1.normalize();
 
-	    // Test case 1: Check x, y, z values of the result
-	    System.out.println("Test case 1: Check x, y, z values of the result");
-	    System.out.println("Expected result: x=" + expected.xyz.d1 + ", y=" + expected.xyz.d2 + ", z=" + expected.xyz.d3);
-	    System.out.println("Actual result: x=" + result.xyz.d1 + ", y=" + result.xyz.d2 + ", z=" + result.xyz.d3);
-	    System.out.println("Test result: " + (result.equals(expected) ? "PASS" : "FAIL"));
-	    System.out.println();
+      /* ============ Equivalence Partitions Tests ============== */
 
-	    // Test case 2: Check if the original vectors are unchanged
-	    System.out.println("Test case 2: Check if the original vectors are unchanged");
-	    System.out.println("Original vector 1: x=" + vector1.xyz.d1 + ", y=" + vector1.xyz.d2 + ", z=" + vector1.xyz.d3);
-	    System.out.println("Original vector 2: x=" + vector2.xyz.d1 + ", y=" + vector2.xyz.d2 + ", z=" + vector2.xyz.d3);
-	    System.out.println("Test result: " + (vector1.equals(new Vector(1, 2, 3)) && vector2.equals(new Vector(4, 5, 6)) ? "PASS" : "FAIL"));
-	    System.out.println();
-	  }
+      /* TC01: dot product with sharp angle between vectors. */
+
+      assertTrue(isZero(vr.length() - v1.length() * v3.length()),
+                 "ERROR: crossProduct() wrong result length");
+
+      assertTrue(isZero(vr.dotProduct(v1)) && isZero(vr.dotProduct(v3)),
+                 "ERROR: crossProduct() result is not orthogonal to its operands");
+
+      /* =============== Boundary Values Tests ================== */
+
+      /* TC02: vectors with reverse directions. */
+      Vector va1 = a.subtract(b);
+      Vector va2 = b.subtract(a);
+      assertThrows(IllegalArgumentException.class,
+                   () -> va1.crossProduct(va2),
+                   "ERROR: the normalized vector is not parallel to the original one");
+
+
+      /* TC03: orthogonal vectors. */
+      assertEquals(new Vector(-13, 2, 3),
+                   v1.crossProduct(v3),
+                   "ERROR: crossProduct() wrong value");
+
+
+      /* TC04: vectors with obtuse angle between them. */
+      assertEquals(new Vector(11, -2, -3),
+                   v3.crossProduct(new Vector(1, 1, 3)),
+                   "ERROR: crossProduct() wrong value");
+
+      /* TC05: vectors with sharp angle between them. */
+      assertEquals(new Vector(-14, -2, -3),
+                   v3.crossProduct(new Vector(1, 2, -6)),
+                   "ERROR: crossProduct() wrong value");
+
+      /* TC06: vectors with same direction. */
+      assertThrows(IllegalArgumentException.class,
+                   () -> v1.crossProduct(u),
+                   "ERROR: the normalized vector is not parallel to the original one");
+
+
+      /* TC07: parallel vectors. */
+      assertThrows(IllegalArgumentException.class,
+                   () -> v1.crossProduct(v2),
+                   "ERROR: crossProduct() for parallel vectors does not throw an exception");
+  }
 
 	/**
 	 * Test method for {@link primitives.Vector#dotProduct(primitives.Vector)}.
 	 */
 	
 	void testDotProduct() {
-		// Create two Vector objects with xyz values
-	    Vector vector1 = new Vector(1, 2, 3);
-	    Vector vector2 = new Vector(4, 5, 6);
+		Vector v1 = new Vector(1, 2, 3);
+        Vector v2 = new Vector(-2, -4, -6);
+        Vector v3 = new Vector(0, 3, -2);
+        Vector v4 = new Vector(7, 3, 1);
 
-	    // Call the dotProduct method with the two Vector objects
-	    double result = vector1.dotProduct(vector2);
+        Point a = new Point(1, 3, 9);
+        Point b = new Point(-4, -7, 0);
 
-	    // Expected result
-	    double xx = vector1.xyz.d1 * vector2.xyz.d1;
-	    double yy = vector1.xyz.d2 * vector2.xyz.d2;
-	    double zz = vector1.xyz.d3 * vector2.xyz.d3;
-	    double expected = xx + yy + zz;
+        /* ============ Equivalence Partitions Tests ============== */
 
-	    // Test case 1: Check if the dot product result is correct
-	    System.out.println("Test case 1: Check if the dot product result is correct");
-	    System.out.println("Expected result: " + expected);
-	    System.out.println("Actual result: " + result);
-	    System.out.println("Test result: " + (result == expected ? "PASS" : "FAIL"));
-	    System.out.println();
+        /* TC01: Check correct values. */
+        assertTrue(isZero(v1.dotProduct(v4) - 16),
+                   "ERROR: dotProduct() failed with valid vectors wrong value");
 
-	    // Test case 2: Check if the original vectors are unchanged
-	    System.out.println("Test case 2: Check if the original vectors are unchanged");
-	    System.out.println("Original vector 1: x=" + vector1.xyz.d1 + ", y=" + vector1.xyz.d2 + ", z=" + vector1.xyz.d3);
-	    System.out.println("Original vector 2: x=" + vector2.xyz.d1 + ", y=" + vector2.xyz.d2 + ", z=" + vector2.xyz.d3);
-	    System.out.println("Test result: " + (vector1.equals(new Vector(1, 2, 3)) && vector2.equals(new Vector(4, 5, 6)) ? "PASS" : "FAIL"));
-	    System.out.println();
+        /* =============== Boundary Values Tests ================== */
+
+        /* TC02: parallel vectors. */
+        assertTrue(isZero(v1.dotProduct(v2) + 28),
+                   "ERROR: dotProduct() failed with parallel vectors wrong value");
+
+        /* TC03: vectors with same direction. */
+        Vector u = v1.normalize();
+        assertFalse(v1.dotProduct(u) < 0,
+                    "ERROR: the normalized vector is opposite to the original one");
+
+
+        /* TC04: vectors with reverse directions. */
+        Vector va1 = a.subtract(b);
+        Vector va2 = b.subtract(a);
+        assertTrue(isZero(va1.dotProduct(va2) + 206),
+                   "ERROR: dotProduct() reverse direction vectors wrong value");
+
+
+        /* TC05: vectors with obtuse angle between them. */
+        assertTrue(isZero(v3.dotProduct(new Vector(1, 1, 3)) + 3),
+                   "ERROR: dotProduct() obtuse angle between vectors wrong value");
+
+
+        /* TC06: Orthogonal vectors. */
+        assertTrue(isZero(v1.dotProduct(v3)),
+                   "ERROR: dotProduct() for orthogonal vectors is not zero");
+
+        /* TC07: vectors with sharp angle between them. */
+        assertTrue(isZero(v3.dotProduct(new Vector(1, 2, -6)) - 18),
+                   "ERROR: dotProduct() wrong value");
 	}
 
 
@@ -137,113 +188,61 @@ class VectorTests {
 	 */
 	
 	void testLengthSquared() {
-		// Create a Vector object with xyz values
-	    Vector vector = new Vector(3, 4, 5);
+		Vector v1 = new Vector(1, 2, 3);
 
-	    // Call the lengthSquared method on the Vector object
-	    double result = vector.lengthSquared();
+        /* ============ Equivalence Partitions Tests ============== */
 
-	    // Expected result
-	    double xx = vector.xyz.d1 * vector.xyz.d1;
-	    double yy = vector.xyz.d2 * vector.xyz.d2;
-	    double zz = vector.xyz.d3 * vector.xyz.d3;
-	    double expected = xx + yy + zz;
-
-	    // Test case 1: Check if the length squared result is correct
-	    System.out.println("Test case 1: Check if the length squared result is correct");
-	    System.out.println("Expected result: " + expected);
-	    System.out.println("Actual result: " + result);
-	    System.out.println("Test result: " + (result == expected ? "PASS" : "FAIL"));
-	    System.out.println();
-
-	    // Test case 2: Check if the original vector is unchanged
-	    System.out.println("Test case 2: Check if the original vector is unchanged");
-	    System.out.println("Original vector: x=" + vector.xyz.d1 + ", y=" + vector.xyz.d2 + ", z=" + vector.xyz.d3);
-	    System.out.println("Test result: " + (vector.equals(new Vector(3, 4, 5)) ? "PASS" : "FAIL"));
-	    System.out.println();	}
+        /* TC01: check length of square vector. */
+        assertTrue(isZero(v1.lengthSquared() - 14), "ERROR: lengthSquared() wrong value");
+        }
 
 	/**
 	 * Test method for {@link primitives.Vector#length()}.
 	 */
 	
 	void testLength() {
-		// Create a Vector object with xyz values
-	    Vector vector = new Vector(3, 4, 5);
+		Vector v1 = new Vector(0, 3, 4);
 
-	    // Call the length method on the Vector object
-	    double result = vector.length();
+        /* ============ Equivalence Partitions Tests ============== */
 
-	    // Expected result
-	    double expected = Math.sqrt(vector.lengthSquared());
-
-	    // Test case 1: Check if the length result is correct
-	    System.out.println("Test case 1: Check if the length result is correct");
-	    System.out.println("Expected result: " + expected);
-	    System.out.println("Actual result: " + result);
-	    System.out.println("Test result: " + (result == expected ? "PASS" : "FAIL"));
-	    System.out.println();
-
-	    // Test case 2: Check if the original vector is unchanged
-	    System.out.println("Test case 2: Check if the original vector is unchanged");
-	    System.out.println("Original vector: x=" + vector.xyz.d1 + ", y=" + vector.xyz.d2 + ", z=" + vector.xyz.d3);
-	    System.out.println("Test result: " + (vector.equals(new Vector(3, 4, 5)) ? "PASS" : "FAIL"));
-	    System.out.println();	}
+        /* TC01: check length of vector. */
+        assertTrue(isZero(v1.length() - 5), "ERROR: length() wrong value");
+        }
 
 	/**
 	 * Test method for {@link primitives.Vector#normalize()}.
 	 */
 	
 	void testNormalize() {
-		 // Create a Vector object with xyz values
-	    Vector vector = new Vector(3, 4, 5);
+		 Vector v1 = new Vector(1, 2, 3);
 
-	    // Call the normalize method on the Vector object
-	    Vector result = vector.normalize();
+	        /* ============ Equivalence Partitions Tests ============== */
 
-	    // Expected result
-	    double len = vector.length();
-	    Vector expected = new Vector(vector.xyz.d1 / len, vector.xyz.d2 / len, vector.xyz.d3 / len);
-
-	    // Test case 1: Check if the normalized vector is correct
-	    System.out.println("Test case 1: Check if the normalized vector is correct");
-	    System.out.println("Expected result: x=" + expected.xyz.d1 + ", y=" + expected.xyz.d2 + ", z=" + expected.xyz.d3);
-	    System.out.println("Actual result: x=" + result.xyz.d1 + ", y=" + result.xyz.d2 + ", z=" + result.xyz.d3);
-	    System.out.println("Test result: " + (result.equals(expected) ? "PASS" : "FAIL"));
-	    System.out.println();
-
-	    // Test case 2: Check if the original vector is unchanged
-	    System.out.println("Test case 2: Check if the original vector is unchanged");
-	    System.out.println("Original vector: x=" + vector.xyz.d1 + ", y=" + vector.xyz.d2 + ", z=" + vector.xyz.d3);
-	    System.out.println("Test result: " + (vector.equals(new Vector(3, 4, 5)) ? "PASS" : "FAIL"));
-	    System.out.println();	}
+	        /* TC01: check if normalize of valid vector. */
+	        Vector u = v1.normalize();
+	        assertTrue(isZero(u.length() - 1), "ERROR: the normalized vector is not a unit vector");
+	        }
 
 	/**
 	 * Test method for {@link primitives.Vector#subtract(primitives.Vector)}.
 	 */
 	void testSubtractVector() {
-		// Create two Vector objects
-	    Vector vector1 = new Vector(3, 4, 5);
-	    Vector vector2 = new Vector(1, 2, 3);
+		 Vector p1 = new Vector(1, 2, 3);
+	        Vector p3 = new Vector(2, 4, 7);
 
-	    // Call the subtract method on vector1 with vector2 as argument
-	    Vector result = vector1.subtract(vector2);
+	        /* ============ Equivalence Partitions Tests ============== */
 
-	    // Expected result
-	    Vector expected = new Vector(2, 2, 2);
+	        /* TC01: Subtract valid point to valid vector. */
+	        assertEquals(new Vector(1, 2, 4),
+	                     p3.subtract(p1),
+	                     "ERROR: Vector - Vector does not work correctly");
 
-	    // Test case 1: Check if the subtracted vector is correct
-	    System.out.println("Test case 1: Check if the subtracted vector is correct");
-	    System.out.println("Expected result: x=" + expected.xyz.d1 + ", y=" + expected.xyz.d2 + ", z=" + expected.xyz.d3);
-	    System.out.println("Actual result: x=" + result.xyz.d1 + ", y=" + result.xyz.d2 + ", z=" + result.xyz.d3);
-	    System.out.println("Test result: " + (result.equals(expected) ? "PASS" : "FAIL"));
-	    System.out.println();
+	        /* =============== Boundary Values Tests ================== */
 
-	    // Test case 2: Check if the original vectors are unchanged
-	    System.out.println("Test case 2: Check if the original vectors are unchanged");
-	    System.out.println("Original vector1: x=" + vector1.xyz.d1 + ", y=" + vector1.xyz.d2 + ", z=" + vector1.xyz.d3);
-	    System.out.println("Original vector2: x=" + vector2.xyz.d1 + ", y=" + vector2.xyz.d2 + ", z=" + vector2.xyz.d3);
-	    System.out.println("Test result: " + (vector1.equals(new Vector(3, 4, 5)) && vector2.equals(new Vector(1, 2, 3)) ? "PASS" : "FAIL"));
-	    System.out.println();
+	        /* TC02: Check if the zero vector result handle correctly */
+	        assertThrows(IllegalArgumentException.class,
+	                     () -> p1.subtract(p1),
+	                     "ERROR: Vector - Vector doesn't work correctly in zero vector");
 	    }
 
 }

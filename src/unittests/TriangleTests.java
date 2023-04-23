@@ -2,10 +2,13 @@
  * 
  */
 package unittests;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import primitives.Point;
 import primitives.Vector;
 import primitives.Ray;
-
+import geometries.Triangle;
 /**
  * @author linoi
  *
@@ -15,26 +18,21 @@ class TriangleTests {
 	/**
 	 * Test method for {@link geometries.Triangle#getNormal(primitives.Point)}.
 	 */
-	public Vector getNormal(Point p) {
-	    // Implementation of getNormal(Point p) function
-	    // Replace this with your actual implementation
-	    return null;
-	}
+	
 
 	public void testGetNormalPoint() {
-	    // Create a Point object for testing
-	    Point testPoint = new Point(3.0, 4.0,0.0); // Example: creating a Point with x = 3.0 and y = 4.0
+		Point a = new Point(6, 8, 0);
+        Point b = new Point(0, 0, 0);
+        Point c = new Point(9, 0, 0);
 
-	    // Call the getNormal() function with the testPoint
-	    Vector normalVector = getNormal(testPoint);
+        Triangle triangle = new Triangle(a, b, c);
+        Vector normalizeVector = new Vector(0, 0, 1);
+        Vector resultNormal = triangle.getNormal(a);
 
-	    // Check if the returned normalVector is not null
-	    if (normalVector != null) {
-	        System.out.println("Normal vector: " + normalVector.toString());
-	    } 
-	    else {
-	        System.out.println("Error: Normal vector is null.");
-	    }
-	}
+        /* ============ Equivalence Partitions Tests ============== */
+
+        /* TC01: Check normal in specific point. */
+        assertTrue(normalizeVector.isSameNormal(resultNormal),
+                   "ERROR: getNormal() doesn't work correctly.");
 
 }

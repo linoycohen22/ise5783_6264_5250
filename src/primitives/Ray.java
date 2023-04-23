@@ -8,7 +8,7 @@ public class Ray {
 	/**
 	 * ray constructor
 	 */
-	Ray(Point p,Vector d){
+	public Ray(Point p,Vector d){
 		p0 = p;
 		dir = d.normalize();
 	}

@@ -5,6 +5,7 @@ package primitives;
 
 import static primitives.Util.isZero;
 
+//line
 /** This class will serve all primitive classes based on three numbers
  * @author Dan Zilberstein */
 

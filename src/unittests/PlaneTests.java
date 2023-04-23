@@ -2,38 +2,33 @@
  * 
  */
 package unittests;
-import primitives.Point;
-import primitives.Vector;
-import primitives.Ray;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+import primitives.*;
+import geometries.Plane;
 /**
  * @author linoi
  *
  */
 class PlaneTests {
 	
-	public Vector getNormal() {
-	    // Implementation of getNormal() function
-	    return this.getNormal();
-	}
-
 	/**
 	 * Test method for {@link geometries.Plane#getNormal()}.
 	 */
-	
-	void testGetNormal() {
-	    // Create an instance of the class that contains the getNormal() function
-	    PlaneTests myObject = new PlaneTests(); 
+	public void testGetNormal() {
+		 Point a = new Point(1, 2, 3);
+	     Point b = new Point(2, 1, 4);
+	     Point c = new Point(2, 1, 1);
 
-	    // Call the getNormal() function on the object
-	    Vector normalVector = myObject.getNormal();
+	        Plane plane = new Plane(a, b, c);
+	        Vector expectedVector = new Vector(3, 3, 0).normalize();
 
-	    // Check if the returned normalVector is not null
-	    if (normalVector != null) {
-	        System.out.println("Normal vector: " + normalVector.toString());
-	    } else {
-	        System.out.println("Error: Normal vector is null.");
-	    }
+	        /* ============ Equivalence Partitions Tests ============== */
+
+	        /* TC01: Check normal in specific point. */
+	        assertEquals(expectedVector, plane.getNormal(a),
+	                   "ERROR: getNormal() doesn't work correctly.");
 	}
 
 }

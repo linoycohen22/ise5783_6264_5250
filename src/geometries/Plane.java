@@ -1,5 +1,6 @@
 package geometries;
 
+
 import primitives.Point;
 import primitives.Vector;
 
@@ -14,7 +15,7 @@ public class Plane {
 	 * @param p2
 	 * @param p3
 	 */
-	Plane(Point p1, Point p2, Point p3){
+	public Plane(Point p1, Point p2, Point p3){
 		q0 = p1;
 		/*Vector v21 = p2.subtract(p1);//calculate 2 vectors of the plane
 		Vector v31 = p3.subtract(p1);
@@ -24,7 +25,7 @@ public class Plane {
 	/**
 	 * plane constructor #2
 	 */
-	Plane(Point p, Vector norm){
+	public Plane(Point p, Vector norm){
 		q0 = p;
 		normal = norm.normalize();
 	}
