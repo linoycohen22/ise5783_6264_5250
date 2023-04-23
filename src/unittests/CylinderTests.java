@@ -3,13 +3,8 @@
  */
 package unittests;
 
-
-
 import geometries.Cylinder;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
-import java.util.List;
+import primitives.*;
 
 /**
  * @author linoi

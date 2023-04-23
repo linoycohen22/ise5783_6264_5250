@@ -3,16 +3,10 @@
  */
 package unittests;
 
-import static com.primitives.Util.isZero;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static primitives.Util.isZero;
+import static org.junit.jupiter.api.Assertions.*;
 
-
-import primitives.Point;
-import primitives.Vector;
-import primitives.Ray;
+import primitives.*;
 
 /**
  * @author linoi
