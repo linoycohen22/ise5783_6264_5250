@@ -1,10 +1,11 @@
 package geometries;
-
-
+import static primitives.Util.*;
+import java.util.List;
 import primitives.Point;
+import primitives.Ray;
 import primitives.Vector;
 
-public class Plane {
+public class Plane implements Geometry  {
 
 	Point q0;
 	Vector normal;
@@ -52,6 +53,14 @@ public class Plane {
 	public Vector getNormal(Point p) {
 		return getNormal();//all points of a flat plane have the same normal!!
 	}
+	/**
+	 * getter for p0
+	 * @return p0
+	 */
+	public Point getq0()
+	{
+		return q0;
+	}
 
 	/**
 	 * overrides 'toString'
@@ -59,5 +68,41 @@ public class Plane {
 	@Override
 	public String toString() {
 		return "Plane [q0=" + q0 + ", normal=" + normal + "]";
+	}
+	
+	/**
+	 * A function that find all the intersection points in the plane
+	 * 
+	 * @author Linoy Cohen and Yedida Cohen
+	 * */
+	
+	public List<Point> findIntersections(Ray ray) throws Exception 
+	{
+		double nv = normal.dotProduct(ray.getDir());
+		if (isZero(nv))
+		{
+			return null;
+		}
+
+		try 
+		{
+			Vector pSubtractP0 = q0.subtract(ray.getp0());
+			double t = alignZero((normal.dotProduct(pSubtractP0))/nv);
+
+			if(t <= 0)
+			{
+				return null;
+			}
+			return List.of(ray.getPoint(t));
+		}
+		catch(Exception ex) 
+		{
+			return null;
+		}
+	}
+	@Override
+	public List<Point> findIntsersections(Ray ray) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

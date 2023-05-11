@@ -4,6 +4,9 @@
 package unittests;
 
 import static primitives.Util.isZero;
+
+import org.junit.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import primitives.*;
@@ -17,7 +20,7 @@ class VectorTests {
 	/**
 	 * Test method for {@link primitives.Vector#add(primitives.Vector)}.
 	 */
-	
+	@Test
 	void testAddVector() {
 		// Create a Vector object with xyz values (1, 2, 3)
 		Vector p1 = new Vector(1, 2, 3);
@@ -42,7 +45,7 @@ class VectorTests {
 	/**
 	 * Test method for {@link primitives.Vector#scale(double)}.
 	 */
-	
+	@Test
 	void testScale() {
 		Vector p1 = new Vector(1, 2, 3);
 
@@ -64,7 +67,7 @@ class VectorTests {
 	/**
 	 * Test method for {@link primitives.Vector#crossProduct(primitives.Vector)}.
 	 */
-	
+	@Test
   void testCrossProduct() {
 	  Point a = new Point(1, 3, 9);
       Point b = new Point(-4, -7, 0);
@@ -127,7 +130,7 @@ class VectorTests {
 	/**
 	 * Test method for {@link primitives.Vector#dotProduct(primitives.Vector)}.
 	 */
-	
+	@Test
 	void testDotProduct() {
 		Vector v1 = new Vector(1, 2, 3);
         Vector v2 = new Vector(-2, -4, -6);
@@ -180,7 +183,7 @@ class VectorTests {
 	/**
 	 * Test method for {@link primitives.Vector#lengthSquared()}.
 	 */
-	
+	@Test
 	void testLengthSquared() {
 		Vector v1 = new Vector(1, 2, 3);
 
@@ -193,7 +196,7 @@ class VectorTests {
 	/**
 	 * Test method for {@link primitives.Vector#length()}.
 	 */
-	
+	@Test
 	void testLength() {
 		Vector v1 = new Vector(0, 3, 4);
 
@@ -206,7 +209,7 @@ class VectorTests {
 	/**
 	 * Test method for {@link primitives.Vector#normalize()}.
 	 */
-	
+	@Test
 	void testNormalize() {
 		 Vector v1 = new Vector(1, 2, 3);
 
@@ -220,6 +223,7 @@ class VectorTests {
 	/**
 	 * Test method for {@link primitives.Vector#subtract(primitives.Vector)}.
 	 */
+	@Test
 	void testSubtractVector() {
 		 Vector p1 = new Vector(1, 2, 3);
 	        Vector p3 = new Vector(2, 4, 7);

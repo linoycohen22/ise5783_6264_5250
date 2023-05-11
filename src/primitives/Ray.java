@@ -1,4 +1,6 @@
 package primitives;
+import java.util.List;
+ 
 
 public class Ray {
 
@@ -34,5 +36,18 @@ public class Ray {
 	@Override
 	public String toString() {
 		return "Ray [p0=" + p0 + ", dir=" + dir + "]";
+	}
+	public Point getPoint(double t) throws IllegalArgumentException
+	{
+		return p0.add(dir.scale(t));
+	}
+	public Vector getDir() 
+	{
+		return dir.normalize();
+	}
+	
+	public Point getp0() {
+		// TODO Auto-generated method stub
+		return p0;
 	}
 }

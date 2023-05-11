@@ -10,8 +10,15 @@ public class Point {
 	 * @param y
 	 * @param z
 	 */
-	public Point(double x, double y, double z){
-		xyz = new Double3(x, y, z);
+	public Point(double x,double y,double z) {
+		super();
+		Double3 a=new Double3(x,y,z);
+		this.xyz =a;
+	}
+
+	public  Point(Double3 xyz) {
+		super();
+		this.xyz = xyz;
 	}
 
 	/**
@@ -37,7 +44,9 @@ public class Point {
 
 		return "Point [xyz=" + xyz + "]";
 	}
-
+	 public	Double3 getXyz(){
+			return xyz;
+	}
 	/**
 	 * returns the result of the addition of vector 'v' to the current point
 	 * @param v
@@ -82,6 +91,8 @@ public class Point {
 	public double distance(Point p) {
 		return Math.sqrt(distanceSquared(p));
 	}
+
+	
 }
 
 

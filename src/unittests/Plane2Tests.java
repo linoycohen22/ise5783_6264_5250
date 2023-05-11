@@ -2,22 +2,24 @@
  * 
  */
 package unittests;
-import static org.junit.Assert.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import primitives.*;
-import geometries.*;
+import geometries.Plane;
+import primitives.Point;
+import primitives.Ray;
+import primitives.Vector;
+
 /**
  * @author linoi
  *
  */
-class PlaneTests {
-	
+class Plane2Tests {
+
 	/**
 	 * Test method for {@link geometries.Plane#getNormal()}.
 	 */

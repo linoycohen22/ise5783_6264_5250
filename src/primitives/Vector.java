@@ -29,12 +29,22 @@ public class Vector extends Point{
 	 * @param y
 	 * @param z
 	 */
-	public Vector(double x, double y, double z){
-		super(x,y,z);//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		if(Util.isZero(x) && Util.isZero(y) && Util.isZero(z))
-			throw new IllegalArgumentException("ERROR. This is a zero vector!");
+	public  Vector(Double3 xyz) 
+	{
+		super(xyz);
+		if(xyz.equals(new Double3(0, 0, 0)))
+			throw new IllegalArgumentException("The function dosent support the zero vector");
+		// TODO Auto-generated constructor stub
 	}
 
+  public  Vector(double x, double y, double z) 
+	{
+		super(x, y, z);
+		
+		if(xyz.equals(new Double3(0, 0, 0)))
+			throw new IllegalArgumentException("The function dosent support the zero vector");
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * returns the result of the addition of vector 'v' to the current vector
 	 */

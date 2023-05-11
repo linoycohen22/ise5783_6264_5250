@@ -1,14 +1,20 @@
 package geometries;
-
-import primitives.Point;
 import primitives.Vector;
-
-public interface Geometry {
-
+import primitives.Point;
+/**
+ * interface Geometry for all the geometries that have normal
+ * 
+ * @author Linoy Cohen and Yedida Cohen
+ * */
+public interface Geometry extends Intersectable
+{
 	/**
-	 * returns the vector which is the normal to the geometry in point 'p'
-	 * @param p
-	 * @return
-	 */
-	public Vector getNormal(Point p);
+	 * A function that return the normal of the geometry
+	 * 
+	 * @author Linoy Cohen and Yedida Cohen
+	 * @param point
+	 * @return Vector value
+	 * */
+	Vector getNormal(Point point) throws Exception; // function get normal
+
 }

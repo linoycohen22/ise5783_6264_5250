@@ -3,6 +3,11 @@
  */
 package unittests;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.Test;
+
 import geometries.Cylinder;
 import primitives.*;
 
@@ -15,13 +20,14 @@ class CylinderTests {
 	/**
 	 * Test method for {@link geometries.Cylinder#getNormal(primitives.Point)}.
 	 */
+	@Test
 	public Vector getNormal(Point p) {
         // Implementation of getNormal() function
         // Replace this with your actual implementation
         return null;
     }
 	
-	//@Test
+	@Test
     public void testGetNormal() {
 
         Vector dir = new Vector(0, 0, 1);
@@ -75,16 +81,6 @@ class CylinderTests {
                      "ERROR: getNormal() point in the center on the top base " +
                      "doesn't work correctly.");
     }
-
-	private void assertEquals(Vector exceptVectorSide, Vector normal, String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
-    /**
-     * Test method for {@link Cylinder#findIntersections(Ray)}.
-     */
-  
 }
 
 	

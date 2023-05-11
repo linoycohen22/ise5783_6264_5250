@@ -5,6 +5,8 @@ package unittests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.Test;
+
 import primitives.*;
 
 /**
@@ -16,7 +18,7 @@ class PointTests {
 	/**
 	 * Test method for {@link primitives.Point#add(primitives.Vector)}.
 	 */
-	
+	@Test
 	void testAdd() {
 		Point p1 = new Point(1, 2, 3);
 
@@ -31,7 +33,7 @@ class PointTests {
 	/**
 	 * Test method for {@link primitives.Point#subtract(primitives.Point)}.
 	 */
-	
+	@Test
 	void testSubtract() {
 		Point p1 = new Point(1, 2, 3);
 
@@ -52,7 +54,7 @@ class PointTests {
 	/**
 	 * Test method for {@link primitives.Point#distanceSquared(primitives.Point)}.
 	 */
-	
+	@Test
 	void testDistanceSquared() {
 		 /* ============ Equivalence Partitions Tests ============== */
 
@@ -74,7 +76,7 @@ class PointTests {
 	/**
 	 * Test method for {@link primitives.Point#distance(primitives.Point)}.
 	 */
-	
+	@Test
 	void testDistance() {
 		Point p1 = new Point(1, 2, 3);
         Point p2 = new Point(5, 4, 32);

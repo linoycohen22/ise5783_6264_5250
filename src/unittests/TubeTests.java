@@ -3,12 +3,11 @@
  */
 package unittests;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.Test;
 
-import primitives.Point;
-import primitives.Vector;
-import primitives.Ray;
+import primitives.*;
 import geometries.Tube;
 /**
  * @author linoi
@@ -20,7 +19,7 @@ class TubeTests {
 	 * Test method for {@link geometries.Tube#getNormal(primitives.Point)}.
 	 */
 	
-
+	@Test
 	public void testGetNormal() {
 		Point p0 = new Point(0, 0, 0.5);
         Vector dir = new Vector(0, 0, 1);
@@ -31,11 +30,11 @@ class TubeTests {
         Point point1 = new Point(0, -2, 0.5);
 
         /* TC01: normal situation normal vector to a point on the tube not paralleled to p0. */
-        assertTrue(exceptedVector.isSameNormal(tube.getNormal(point)),
+        assertEquals(exceptedVector,tube.getNormal(point),
                    "ERROR: getNormal() doesn't work correctly.");
 
         /* TC02: edge situation normal vector to a point on the tube paralleled to p0. */
-        assertTrue(exceptedVector.isSameNormal(tube.getNormal(point1)),
+        assertEquals(exceptedVector,tube.getNormal(point1),
                    "ERROR: getNormal() doesn't work correctly when it's in the edge case.");
 	}
 }
