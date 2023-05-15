@@ -29,7 +29,10 @@ public class Tube implements Geometry {
 	}
 
 	public Vector getNormal(Point p) {
-		return null;
+		double t=ray.getDir().dotProduct(p.subtract(ray.getp0()));
+		Point pointO =ray.getp0().add(ray.getDir().scale(t));
+		Vector myVec=p.subtract(pointO);
+		return myVec.normalize();
 	}
 	
 
@@ -40,16 +43,11 @@ public class Tube implements Geometry {
 	public String toString() {
 		return "Tube [radius=" + radius + ", ray=" + ray + "]";
 	}
-	
-	public List<Point> findIntersections(Ray ray) 
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Point> findIntsersections(Ray ray) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

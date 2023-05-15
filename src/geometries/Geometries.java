@@ -51,7 +51,6 @@ public class Geometries implements Intersectable {
 				if (intersection != null)
 					temp.addAll(intersection); 
 			}
-
 			if (temp.isEmpty())
 				return null;
 			return temp;	

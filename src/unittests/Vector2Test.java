@@ -3,19 +3,19 @@
  */
 package unittests;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import primitives.*;
+import primitives.Point;
+import primitives.Vector;
 
 /**
  * @author linoi
  *
  */
-class VectorTests {
+class Vector2Test {
 
 	/**
 	 * Test method for {@link primitives.Vector#add(primitives.Vector)}.

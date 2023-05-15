@@ -1,6 +1,9 @@
 /**
  * 
  */
+/**
+ * 
+ */
 package unittests;
 
 import static org.junit.Assert.assertEquals;
@@ -15,17 +18,11 @@ import primitives.*;
  * @author linoi
  *
  */
-class CylinderTests {
+class Cylinder2Tests {
 
 	/**
 	 * Test method for {@link geometries.Cylinder#getNormal(primitives.Point)}.
 	 */
-	@Test
-	public Vector getNormal(Point p) {
-        // Implementation of getNormal() function
-        // Replace this with your actual implementation
-        return null;
-    }
 	
 	@Test
     public void testGetNormal() {
@@ -84,4 +81,3 @@ class CylinderTests {
 }
 
 	
-

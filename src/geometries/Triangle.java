@@ -57,9 +57,4 @@ public class Triangle extends Polygon implements Geometry
 		}
 		return null; //there is no instruction point
 	}
-	@Override
-	public List<Point> findIntsersections(Ray ray) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

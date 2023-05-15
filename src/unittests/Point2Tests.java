@@ -5,15 +5,17 @@ package unittests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import primitives.*;
+import primitives.Point;
+import primitives.Util;
+import primitives.Vector;
 
 /**
- * Tests of class {@link primitives.Point}
  * @author linoi
+ *
  */
-class PointTests {
+class Point2Tests {
 
 	/**
 	 * Test method for {@link primitives.Point#add(primitives.Vector)}.
@@ -51,12 +53,13 @@ class PointTests {
                      () -> p1.subtract(p1),
                      "ERROR: Point - Point doesn't work correctly when the result is zero vector");
 	}
+
 	/**
 	 * Test method for {@link primitives.Point#distanceSquared(primitives.Point)}.
 	 */
 	@Test
 	void testDistanceSquared() {
-		 /* ============ Equivalence Partitions Tests ============== */
+		/* ============ Equivalence Partitions Tests ============== */
 
         Point p1 = new Point(1, 2, 3);
         Point p2 = new Point(5, 4, 32);
@@ -71,7 +74,6 @@ class PointTests {
         assertTrue(Util.isZero(p1.distanceSquared(p1) - 0),
                    "ERROR: distanceSquared() doesn't work correctly if they are the same point");
 	}
-	
 
 	/**
 	 * Test method for {@link primitives.Point#distance(primitives.Point)}.

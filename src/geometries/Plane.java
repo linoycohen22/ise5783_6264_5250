@@ -16,12 +16,16 @@ public class Plane implements Geometry  {
 	 * @param p2
 	 * @param p3
 	 */
-	public Plane(Point p1, Point p2, Point p3){
-		q0 = p1;
-		/*Vector v21 = p2.subtract(p1);//calculate 2 vectors of the plane
-		Vector v31 = p3.subtract(p1);
-		normal = v21.crossProduct(v31).normalize();*/
-		normal = null;
+	public Plane(Point point1,Point point2,Point point3)
+	{
+		
+		if (point1.equals(point2)|| point2.equals(point3)|| point3.equals(point1))//Check if two points coalesce
+			throw new IllegalArgumentException("Two points converge");
+		this.q0 = point1;
+		Vector myVec1=(point2.subtract(point1));// vector p2p1
+		Vector myVec2=(point3.subtract(point1));//vector p3p1	
+		this.normal = myVec1.crossProduct(myVec2).normalize();
+				
 	}
 	/**
 	 * plane constructor #2
