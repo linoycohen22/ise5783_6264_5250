@@ -21,5 +21,7 @@ public interface Intersectable
 	 * @throws Exception
 	 * */
 	List<Point> findIntsersections(Ray ray)throws Exception;
+		
+	
 
 }

@@ -31,8 +31,9 @@ public class Plane implements Geometry  {
 	 * plane constructor #2
 	 */
 	public Plane(Point p, Vector norm){
-		q0 = p;
-		normal = norm.normalize();
+		super();
+		this.q0 = p;
+		this.normal = norm.normalize();
 	}
 
 	/**

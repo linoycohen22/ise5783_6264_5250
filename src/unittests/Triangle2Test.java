@@ -20,6 +20,7 @@ import primitives.Vector;
  */
 class Triangle2Test {
 
+	
 	/**
 	 * Test method for {@link geometries.Triangle#findIntsersections(primitives.Ray)}.
 	 */

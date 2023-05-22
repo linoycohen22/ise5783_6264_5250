@@ -50,4 +50,25 @@ public class Ray {
 		// TODO Auto-generated method stub
 		return p0;
 	}
+	/**
+	 * The function returns the point closest to the beginning of the beam
+	 * from all the intersection points of the resulting list.
+	 * 
+	 * @author linoy and yedida
+	 * @param points List<Point> value
+	 * @return Point value
+	 * */
+	
+	public Point findClosestPoint(List<Point> points) 
+	{
+		if(points == null)
+			return null;
+		Point closet = points.get(0);
+		for (Point point3d : points) 
+		{
+			if(point3d.distance(p0) < closet.distance(p0))
+				closet= point3d;
+		}
+		return closet;
+	}
 }

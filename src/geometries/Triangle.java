@@ -1,5 +1,6 @@
 package geometries;
 import static primitives.Util.alignZero;
+import static primitives.Util.*;
 
 import java.util.List;
 import primitives.Point;
@@ -43,18 +44,20 @@ public class Triangle extends Polygon implements Geometry
 		Vector n2 = v2.crossProduct(v3).normalize();
 		Vector n3 = v3.crossProduct(v1).normalize();
 
+		
 		//The point is inside if all 𝒗 ∙ 𝑵𝒊 have the same sign (+/-)
-
-		if (alignZero(n1.dotProduct(plane.getNormal())) > 0 && alignZero(n2.dotProduct(plane.getNormal())) > 0 && alignZero(n3.dotProduct(plane.getNormal())) > 0)
+		
 		if (alignZero(n1.dotProduct(ray.getDir())) > 0 && alignZero(n2.dotProduct(ray.getDir())) > 0 && alignZero(n3.dotProduct(ray.getDir())) > 0)
 		{
 			return rayPoints;
 		}
-		else if (alignZero(n1.dotProduct(plane.getNormal())) < 0 && alignZero(n2.dotProduct(plane.getNormal())) < 0 && alignZero(n3.dotProduct(plane.getNormal())) < 0)
-	     if (alignZero(n1.dotProduct(ray.getDir())) < 0 && alignZero(n2.dotProduct(ray.getDir())) < 0 && alignZero(n3.dotProduct(ray.getDir())) < 0)
+		else if (alignZero(n1.dotProduct(ray.getDir())) < 0 && alignZero(n2.dotProduct(ray.getDir())) < 0 && alignZero(n3.dotProduct(ray.getDir())) < 0)
 		{
 			return rayPoints;
 		}
-		return null; //there is no instruction point
+		if (isZero(n1.dotProduct(ray.getDir())) || isZero(n2.dotProduct(ray.getDir())) || isZero(n3.dotProduct(ray.getDir())))
+			return null; //there is no instruction point
+		return null;
 	}
+	
 }

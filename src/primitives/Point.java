@@ -10,6 +10,9 @@ public class Point {
 	 * @param y
 	 * @param z
 	 */
+	/** Zero triad (0,0,0) */
+	//public static final Point ZERO = new Point(0, 0, 0);
+	   
 	public Point(double x,double y,double z) {
 		super();
 		Double3 a=new Double3(x,y,z);
