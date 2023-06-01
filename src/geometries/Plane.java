@@ -80,8 +80,8 @@ public class Plane implements Geometry  {
 	 * 
 	 * @author Linoy Cohen and Yedida Cohen
 	 * */
-	
-	public List<Point> findIntersections(Ray ray) throws Exception 
+	@Override
+	public List<Point> findIntsersections(Ray ray) throws Exception 
 	{
 		double nv = normal.dotProduct(ray.getDir());
 		if (isZero(nv))
@@ -105,9 +105,5 @@ public class Plane implements Geometry  {
 			return null;
 		}
 	}
-	@Override
-	public List<Point> findIntsersections(Ray ray) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }

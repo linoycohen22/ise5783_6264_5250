@@ -30,9 +30,11 @@ public class Triangle extends Polygon implements Geometry
 		return "Triangle: "+super.toString();
 	}
 	@Override
-	public List<Point> findIntersections(Ray ray) throws Exception 
+	   public List<Point> findIntsersections(Ray ray) throws Exception 
+
+	//public List<Point> findIntersections(Ray ray) throws Exception 
 	{
-		List<Point> rayPoints = plane.findIntersections(ray);
+		List<Point> rayPoints = plane.findIntsersections(ray);
 		if (rayPoints == null)
 			return null;
 		//check if the point in out or on the triangle:

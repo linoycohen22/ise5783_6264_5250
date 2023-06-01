@@ -27,7 +27,7 @@ public class Integration {
 	/**
 	 * A function that create 9 rays from vp 3x3
 	 * 
-	 * @author hadassa pereta & galit malkiel
+	 * @author Linoy Cohen and Yedida Cohen
 	 * @return List<Ray> value for the rays 
 	 * */
 	public List<Ray> ViewPlensRaies(Camera camera)
@@ -56,7 +56,7 @@ public class Integration {
 	/**
 	 * A function that return list of intersection points
 	 * 
-	 * @author hadassa pereta & galit malkiel
+	 * @author Linoy Cohen and Yedida Cohen
 	 * @return List<Point> value for the intersection points 
 	 * */
 	public List<Point> findIntersectionPoints(Camera camera, Intersectable geomety)
@@ -170,10 +170,11 @@ public class Integration {
 			//same camera
 			assertEquals("The count of intersections are not correct", 6, findIntersectionPoints(camera, plane).size());	
 		} 
-		catch (Exception e) 
+	catch (Exception e) 
 		{
 			e.printStackTrace();
 			fail("dont need throws exception");
+	
 		}
 
 	}

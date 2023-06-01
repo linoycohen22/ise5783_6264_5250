@@ -84,9 +84,11 @@ public class Polygon implements Geometry {
 
    public Vector getNormal(Point point) { return plane.getNormal(); }
    
-   public List<Point> findIntersections(Ray ray) throws Exception   
+   @Override
+   public List<Point> findIntsersections(Ray ray) throws Exception {
+  // public List<Point> findIntersections(Ray ray) throws Exception   
 	{
-		List<Point> rayPoints = plane.findIntersections(ray);
+		List<Point> rayPoints = plane.findIntsersections(ray);
 		//check if the point in out or on the triangle:
 		List<Vector> normalsList = new ArrayList<Vector>();
 		Vector vI;
@@ -127,9 +129,5 @@ public class Polygon implements Geometry {
 		return rayPoints;
 	}
 
-@Override
-public List<Point> findIntsersections(Ray ray) throws Exception {
-	// TODO Auto-generated method stub
-	return null;
-}
+   }
 }
