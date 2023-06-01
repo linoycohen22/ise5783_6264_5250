@@ -43,7 +43,7 @@ public class Geometries implements Intersectable
 	/**
 	 * Iterator function
 	 * 
-	 * @author Tamar Gavrieli 322533977 and Odeya Sadoun 212380406
+	 * @author Linoy Cohen and Yedida Cohen
 	 * */
 	public  Iterator<Intersectable> iterator()
 	{
@@ -93,7 +93,6 @@ public class Geometries implements Intersectable
 	 * 
 	 * @author Linoy Cohen and Yedida Cohen
 	 * @return List<Intersectable> value for geometriesInScene
-	 * */
 	public List<Intersectable> getIntsersectionPoints() 
 	{
 		return geometriesInScene;
