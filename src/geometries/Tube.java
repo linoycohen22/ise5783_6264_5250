@@ -11,7 +11,7 @@ import primitives.Vector;
  * Class for Tube
  */
 
-public class Tube implements Geometry {
+public class Tube extends Geometry {
 
 	double radius;
 	Ray ray;
@@ -45,9 +45,11 @@ public class Tube implements Geometry {
 	}
 
 	@Override
-	public List<Point> findIntsersections(Ray ray) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<GeoPoint> findGeoIntersectionsHelper(Ray ray)
+	{
+  	return null;
+
 	}
+
 
 }

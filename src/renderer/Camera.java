@@ -260,7 +260,7 @@ public class Camera {
 	 * This function renders image's pixel color map from the scene included with
 	 * the Renderer object
 	 */
-	public void renderImage()
+	public Camera renderImage()
 	{
 		if(this.p0==null || this.vTo==null|| this.vUp==null || this.rayTrace==null || this.vRight==null||this.imageWriter==null)
 			throw new MissingResourceException("one of the properties contains empty value", null, null);
@@ -270,6 +270,7 @@ public class Camera {
 				castRay(imageWriter.getNx(),imageWriter.getNy(),j,i);
 			}
 		}
+		return this;
 	}
 	/**
 	 * Create a grid [over the picture] in the pixel color map. given the grid's

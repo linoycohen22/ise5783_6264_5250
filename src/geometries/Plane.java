@@ -5,7 +5,7 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
-public class Plane implements Geometry  {
+public class Plane extends Geometry  {
 
 	Point q0;
 	Vector normal;
@@ -81,14 +81,14 @@ public class Plane implements Geometry  {
 	 * @author Linoy Cohen and Yedida Cohen
 	 * */
 	@Override
-	public List<Point> findIntsersections(Ray ray) throws Exception 
-	{
+	  protected  List<GeoPoint> findGeoIntersectionsHelper(Ray ray)
+	  {
 		double nv = normal.dotProduct(ray.getDir());
 		if (isZero(nv))
 		{
 			return null;
 		}
-
+		
 		try 
 		{
 			Vector pSubtractP0 = q0.subtract(ray.getp0());
@@ -98,12 +98,11 @@ public class Plane implements Geometry  {
 			{
 				return null;
 			}
-			return List.of(ray.getPoint(t));
+		 return List.of(new GeoPoint(this,ray.getPoint(t)));
 		}
 		catch(Exception ex) 
 		{
 			return null;
 		}
-	}
-	
+	  }
 }

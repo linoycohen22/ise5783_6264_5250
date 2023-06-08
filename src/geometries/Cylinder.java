@@ -33,9 +33,4 @@ public class Cylinder extends Tube{
 		return "Cylinder [height=" + height + "]";
 	}
 
-	@Override
-	public List<Point> findIntsersections(Ray ray) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

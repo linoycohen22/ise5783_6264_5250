@@ -3,28 +3,34 @@ package lighting;
 import primitives.Color;
 import primitives.Double3;
 
-public class AmbientLight {
+public class AmbientLight extends Light {
 	private Color Ia; //the color
 	private double Ka; //מקדם ההנחתה
-	private Color intensity;
 	public static final AmbientLight NONE = new AmbientLight(Color.BLACK, Double3.ZERO);
+
 	/**
-	 * constructor that save the intensity=Ia*Ka
+	 * constructor for light
 	 * 
 	 * @author linoy and yedida
-	 * @param Ia Color value
-	 * @param Ka double value
+	 * @return the intensity
 	 */
-	public AmbientLight(Color Ia,double Ka ) 
+	public AmbientLight(Color La ,Double3 Ka )
 	{
-		this.intensity = Ia.scale(Ka);
+		 super(La.scale(Ka));
+		 //intensity=super(La.scale(Ka));
+		// intensity=La.scale(Ka);
+		// TODO Auto-generated constructor stub
 	}
-
-	public AmbientLight(Color Ia,Double3 Ka ) 
+	/**
+	 * constructor for light
+	 * if not receive color its Booting in black
+	 * 
+	 * @author linoy and yedida
+	 * @return the intensity 
+	 * */
+	public AmbientLight()
 	{
-		this.intensity = Ia.scale(Ka);
+		super(Color.BLACK)    ;
 	}
-    public Color getIntensity() {
-        return intensity;
-    }
+    
 }

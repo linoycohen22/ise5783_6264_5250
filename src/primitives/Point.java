@@ -2,6 +2,7 @@ package primitives;
 
 public class Point {
 
+	
 	public final Double3 xyz;
 
 	/**

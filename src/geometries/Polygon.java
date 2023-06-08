@@ -15,7 +15,7 @@ import primitives.Vector;
  * @author Linoy Cohen and Yedida Cohen
  *  */
 
-public class Polygon implements Geometry {
+public class Polygon extends Geometry {
    /** List of polygon's vertices */
    protected final List<Point> vertices;
    /** Associated plane in which the polygon lays */
@@ -84,11 +84,17 @@ public class Polygon implements Geometry {
 
    public Vector getNormal(Point point) { return plane.getNormal(); }
    
+   
    @Override
-   public List<Point> findIntsersections(Ray ray) throws Exception {
-  // public List<Point> findIntersections(Ray ray) throws Exception   
+	protected  List<GeoPoint> findGeoIntersectionsHelper(Ray ray)
 	{
-		List<Point> rayPoints = plane.findIntsersections(ray);
+	 List<GeoPoint> rayPoints = plane.findGeoIntersections(ray);
+		if (rayPoints == null)
+			return null;
+		for (GeoPoint geoPoint : rayPoints) 
+		{
+			geoPoint.geometry = this;
+	    }
 		//check if the point in out or on the triangle:
 		List<Vector> normalsList = new ArrayList<Vector>();
 		Vector vI;
@@ -103,10 +109,10 @@ public class Polygon implements Geometry {
 		vI = vertices.get(vertices.size()).subtract(ray.getp0());
 		vIplus1 = vertices.get(0).subtract(ray.getp0());
 		normalsList.add((vI.crossProduct(vIplus1).normalize()));
-
+	
 		//The point is inside if all 𝒗 ∙ 𝑵𝒊 have the same sign (+/-)
-
-		//boolean poasitive = true;
+		
+		//boolean positive = true;
 		int countPositive = 0;
 		int countNegative = normalsList.size();
 		for (Vector vector : normalsList) 
@@ -119,7 +125,7 @@ public class Polygon implements Geometry {
 			{
 				countNegative--;
 			}
-
+			
 		}
 		if (countPositive != normalsList.size() /*all normals in the positive side*/ && countNegative != 0 /*all normals in the negative side*/)
 		{
@@ -128,6 +134,4 @@ public class Polygon implements Geometry {
 
 		return rayPoints;
 	}
-
-   }
 }

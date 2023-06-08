@@ -10,7 +10,7 @@ import primitives.Vector;
  * @author linoy cohen and yedida cohen
  * Class for Triangle
  */
-public class Triangle extends Polygon implements Geometry
+public class Triangle extends Polygon 
 {
 	/**
 	 * Constructor that receives 3 points and calls to the constructor of the base class
@@ -20,7 +20,7 @@ public class Triangle extends Polygon implements Geometry
 	 * @param p3 Point3D
 	 * @throws Exception 
 	 * */
-	public Triangle(Point p1,Point p2,Point p3) throws Exception 
+	public Triangle(Point p1,Point p2,Point p3) //throws Exception 
 	{
 		super(p1, p2, p3);
 
@@ -29,37 +29,50 @@ public class Triangle extends Polygon implements Geometry
 	{
 		return "Triangle: "+super.toString();
 	}
-	@Override
-	   public List<Point> findIntsersections(Ray ray) throws Exception 
-
-	//public List<Point> findIntersections(Ray ray) throws Exception 
-	{
-		List<Point> rayPoints = plane.findIntsersections(ray);
-		if (rayPoints == null)
-			return null;
-		//check if the point in out or on the triangle:
-		Vector v1 = vertices.get(0).subtract(ray.getp0());
-		Vector v2 = vertices.get(1).subtract(ray.getp0());
-		Vector v3 = vertices.get(2).subtract(ray.getp0());
-		
-		Vector n1 = v1.crossProduct(v2).normalize();
-		Vector n2 = v2.crossProduct(v3).normalize();
-		Vector n3 = v3.crossProduct(v1).normalize();
-
-		
-		//The point is inside if all 𝒗 ∙ 𝑵𝒊 have the same sign (+/-)
-		
-		if (alignZero(n1.dotProduct(ray.getDir())) > 0 && alignZero(n2.dotProduct(ray.getDir())) > 0 && alignZero(n3.dotProduct(ray.getDir())) > 0)
-		{
-			return rayPoints;
-		}
-		else if (alignZero(n1.dotProduct(ray.getDir())) < 0 && alignZero(n2.dotProduct(ray.getDir())) < 0 && alignZero(n3.dotProduct(ray.getDir())) < 0)
-		{
-			return rayPoints;
-		}
-		if (isZero(n1.dotProduct(ray.getDir())) || isZero(n2.dotProduct(ray.getDir())) || isZero(n3.dotProduct(ray.getDir())))
-			return null; //there is no instruction point
-		return null;
-	}
 	
+	@Override
+	public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+		//get Intersections of plane
+		List<GeoPoint> planeIntersections = plane.findGeoIntersections(ray);
+
+		if (planeIntersections == null)
+			return null;
+
+		Point p0 = ray.getp0();
+		Vector rayDir = ray.getDir();
+
+		//all the vectors ( (v1-p0)x(v2-p0) ) * (ray dir)  should be the same signe
+		// else the ray outside the polygon
+
+		//first check the sign of dot product the last and the first
+		Vector v1 = vertices.get(0).subtract(p0);
+		Vector vn = vertices.get(vertices.size() - 1).subtract(p0);
+
+		double s1 = rayDir.dotProduct(vn.crossProduct(v1));
+
+		//if the ray cross in the edge of the polygon
+		if (isZero(s1))
+			return null;
+
+		double s2; //keep the next product
+		Vector v2; //the next vector
+		for (var vertex : vertices.subList(1, vertices.size())) {
+
+			v2 = vertex.subtract(p0);
+			s2 = rayDir.dotProduct(v1.crossProduct(v2));
+
+			//if the ray cross in the edge of the polygon
+			if (isZero(s2)) return null;
+
+			//if they not the same sign
+			if( s1 * s2 < 0  )
+				return null;
+
+			v1 = v2; //for the next round
+		}
+
+		//if the func not return null than we have Intersections with the polygon
+		return planeIntersections.stream().map(gp->new GeoPoint(this,gp.point)).toList();
+	}
+		
 }

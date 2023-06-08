@@ -5,6 +5,7 @@ import java.util.List;
 
 import geometries.Geometries;
 import lighting.AmbientLight;
+import lighting.LightSource;
 import primitives.Color;
 
 public class Scene 
@@ -15,6 +16,8 @@ public class Scene
 	public Color background=Color.BLACK;
 	public AmbientLight ambientLight = AmbientLight.NONE;
 	public Geometries geometries;
+	public List<LightSource>lights=new LinkedList<LightSource>() ;
+
 	/**
 	 * constructor 
 	 * 
@@ -31,7 +34,16 @@ public class Scene
 		this.name = name;
 		return this;
 	}
-	
+	/**
+	 * setter function to lights  and return this for builder pattern
+	 * 
+	 * @author linoy & yedida
+	 * @param lights the lights to set
+	 */
+	public Scene setLights(List<LightSource> lights) {
+		this.lights = lights;
+		return this;
+	}
 	/**
 	 * setter function to background, and return this for builder pattern
 	 * 

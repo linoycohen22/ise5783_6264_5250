@@ -1,6 +1,7 @@
 package primitives;
 import java.util.List;
- 
+import geometries.Intersectable.GeoPoint;
+
 
 public class Ray {
 
@@ -61,13 +62,29 @@ public class Ray {
 	
 	public Point findClosestPoint(List<Point> points) 
 	{
-		if(points == null)
+	    return points == null || points.isEmpty() ? null
+	           : getClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point;
+	}
+	/**
+	 * The function returns the point closest to the beginning of the beam
+	 * from all the intersection points of the resulting list.
+	 * 
+	 * @author linoy and yedida
+	 * @param points List<GeoPoint> value
+	 * @return Point value
+	 * */
+	
+	public GeoPoint getClosestGeoPoint(List<GeoPoint> intersections)
+	{
+		
+		if(intersections == null)
 			return null;
-		Point closet = points.get(0);
-		for (Point point3d : points) 
+		GeoPoint closet = intersections.get(0);
+		for (GeoPoint geoPoint : intersections) 
 		{
-			if(point3d.distance(p0) < closet.distance(p0))
-				closet= point3d;
+			if(geoPoint.point.distance(p0) < closet.point.distance(p0))
+				closet= geoPoint;
+			
 		}
 		return closet;
 	}
