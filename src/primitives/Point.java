@@ -68,11 +68,7 @@ public class Point {
 	 * @param p
 	 * @return
 	 */
-	/*public Vector subtract(Point p) {
-		Double3 d3Ret = p.xyz.subtract(this.xyz);
-		Vector vReturn = new Vector(d3Ret.d1, d3Ret.d2, d3Ret.d3);
-		return vReturn;
-	}*/
+	
 	public Vector subtract(Point p) {
 		Double3 d3Ret = this.xyz.subtract(p.xyz);
 		Vector vReturn = new Vector(d3Ret.d1, d3Ret.d2, d3Ret.d3);

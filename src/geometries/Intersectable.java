@@ -1,23 +1,21 @@
 package geometries;
-
 import primitives.Ray;
 
 import java.util.List;
 
 import primitives.Point;
-/**
- * Interface for Intsersections
- * @author Linoy Cohen and Yedida Cohen
- *
- */
-public abstract class Intersectable 
+
+
+
+public abstract class  Intersectable
 {
+	
 	/**
 	 * Static Internal Auxiliary Department (as a completely passive data structure - PDS)
 	 * 
-     * @author Linoy Cohen and Yedida Cohen
+	 * @author Linoy Cohen and Yedida Cohen
 	 * @param geometry Geometry value
-	 * @param point Point value
+	 * @param point Point3D value
 	 * */
 	public static class GeoPoint
 	{
@@ -27,9 +25,9 @@ public abstract class Intersectable
 	    /**
 	     * constructor for geo point
 	     * 
-         * @author Linoy Cohen and Yedida Cohen
+	     * @author Linoy Cohen and Yedida Cohen
 	     * @param geometry Geometry
-	     * @param point Point
+	     * @param point Point3D
 	     * */
 	    public GeoPoint(Geometry geometry,Point point)
 	    {
@@ -53,6 +51,7 @@ public abstract class Intersectable
 		}
 		
 	}
+	
 	/***
 	 * 
 	 * @param ray
@@ -66,15 +65,14 @@ public abstract class Intersectable
 		
     }
 	
-	public List<GeoPoint> findGeoIntersections (Ray ray)
-	{
-		return findGeoIntersectionsHelper(ray)	;
-		
-	}
-	
-	protected  List<GeoPoint> findGeoIntersectionsHelper(Ray ray)
-	 {
-			return null;
-	 }
+	protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray, double maxDistance);
 
+ 	public final List<GeoPoint> findGeoIntersections (Ray ray)
+ 	{
+    	return findGeoIntersections(ray, Double.POSITIVE_INFINITY);
+    }
+    public final List<GeoPoint> findGeoIntersections(Ray ray, double maxDistance)
+    {
+     	return findGeoIntersectionsHelper(ray, maxDistance);
+    }
 }

@@ -98,5 +98,9 @@ public class PointLight extends Light implements LightSource {
 			return null; //In order not to reach a state of exception due to the zero vector
 		return p.subtract(position).normalize();
 	}
-	
+	@Override
+	public double getDistance(Point point) 
+	{
+		return position.distance(point);
+	}
 }

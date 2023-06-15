@@ -31,9 +31,11 @@ public class Triangle extends Polygon
 	}
 	
 	@Override
-	public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+	public List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxdistance) {
 		//get Intersections of plane
 		List<GeoPoint> planeIntersections = plane.findGeoIntersections(ray);
+		//double nv = vector.dotProduct(ray.getDir());
+		
 
 		if (planeIntersections == null)
 			return null;
@@ -70,9 +72,15 @@ public class Triangle extends Polygon
 
 			v1 = v2; //for the next round
 		}
+	/*	double nv =  plane.vector.dotProduct(ray.getDir());
+		Vector pSubtractP0 = plane.point.subtract(ray.getP0());
+		double t = alignZero((plane.vector.dotProduct(pSubtractP0))/nv);
+		 List<GeoPoint>  finish=new LinkedList<GeoPoint>();
+		 for(GeoPoint xxx:planeIntersections)
+			 if(Util.alignZero(t-maxdistance)<=0)
+				 finish.add(xxx);*/
 
 		//if the func not return null than we have Intersections with the polygon
 		return planeIntersections.stream().map(gp->new GeoPoint(this,gp.point)).toList();
-	}
-		
+	}	
 }

@@ -3,6 +3,7 @@ package geometries;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -72,20 +73,21 @@ public class Geometries extends Intersectable
 	 * @throws Exception 
 	 * */
 	@Override
-	public List<GeoPoint> findGeoIntersectionsHelper(Ray ray)
+	public List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance)
 	{
-	List<GeoPoint> temp = new ArrayList<GeoPoint>();	
-	for (Intersectable intersectable : geometriesInScene) 
-	{
-		List<GeoPoint> intersection = intersectable.findGeoIntersections(ray);
-		if (intersection != null)
-			temp.addAll(intersection); 
+		List<GeoPoint> points = null;
+		if (geometriesInScene != null) {
+		for (var body : geometriesInScene) {
+		var result = body.findGeoIntersections(ray, maxDistance);
+		if (result != null)
+		if (points == null)
+		points = new LinkedList<GeoPoint>(result);
+		else
+		points.addAll(result);
+		}
+		}
+		return points;
 	}
-	
-	if (temp.isEmpty())
-		return null;
-	return temp;	
-   }
 	/**
 	 * A getter function for geometriesInScene
 	 * 

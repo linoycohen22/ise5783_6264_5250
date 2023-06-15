@@ -1,9 +1,14 @@
 package geometries;
-import static primitives.Util.*;
+import java.util.LinkedList;
 import java.util.List;
 import primitives.Point;
 import primitives.Ray;
+import primitives.Util;
 import primitives.Vector;
+
+import static  primitives.Util.isZero;
+import static primitives.Util.alignZero;
+
 
 public class Plane extends Geometry  {
 
@@ -81,7 +86,7 @@ public class Plane extends Geometry  {
 	 * @author Linoy Cohen and Yedida Cohen
 	 * */
 	@Override
-	  protected  List<GeoPoint> findGeoIntersectionsHelper(Ray ray)
+	  protected  List<GeoPoint> findGeoIntersectionsHelper(Ray ray,double maxDistance)
 	  {
 		double nv = normal.dotProduct(ray.getDir());
 		if (isZero(nv))
@@ -98,7 +103,7 @@ public class Plane extends Geometry  {
 			{
 				return null;
 			}
-		 return List.of(new GeoPoint(this,ray.getPoint(t)));
+			return List.of(new GeoPoint(this,ray.getPoint(t)));
 		}
 		catch(Exception ex) 
 		{

@@ -20,6 +20,33 @@ import primitives.Vector;
  *
  */
 class Plane2Tests {
+	@Test
+	public void testPlaneConstructor()
+	{
+		try
+		{
+			Point p1=new Point(2,7,5);
+			Point p2=new Point(2,7,5);
+			Point p3=new Point(1,3,4);
+			Plane myPlane =new Plane(p1, p2 , p3);
+			
+			fail ("The points coalesce and the constructor should send an exception");
+		}
+		catch(Exception ex) {}
+		
+		try
+		{
+			Point p1=new Point(2,7,5);
+			Point p2=new Point(2,4,6);
+			Point p3=new Point (2,7,5);
+			Plane myPlane =new Plane(p1, p2 , p3);
+			
+			fail ("The dots are on the same line");
+		}
+		catch(Exception ex) {}
+		
+	}	
+
 
 	/**
 	 * Test method for {@link geometries.Plane#getNormal()}.
