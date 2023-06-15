@@ -6,26 +6,6 @@ public class Material
 	public int nShininess=0;
 	public Double3 KD=new Double3 (0,0,0); 
 	public Double3 KS=new Double3 (0,0,0);
-	public Double3 Kt=new Double3 (0.0); 
-	public Double3 Kr=new Double3 (0.0); 
-	
-	
-
-	
-
-	public Material setKt(Double3 kt) 
-	{
-		Kt = kt;
-		return this;
-	}
-
-	
-	public Material setKr(Double3 kr) 
-	{
-		Kr = kr;
-		return this;
-	}
-	
 	
 
 	/**
