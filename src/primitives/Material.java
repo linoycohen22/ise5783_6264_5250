@@ -1,12 +1,32 @@
 package primitives;
-import primitives.Double3;
 
 public class Material
 {
 	public int nShininess=0;
 	public Double3 KD=new Double3 (0,0,0); 
 	public Double3 KS=new Double3 (0,0,0);
+	public Double3 Kt=new Double3 (0.0); 
+	public Double3 Kr=new Double3 (0.0);
 	
+	/**
+	 * @param setKt the setKt to set
+	 */
+	public Material setKt(Double3 kt) 
+	{
+		Kt = kt;
+		return this;
+	}
+
+
+	/**
+	 * @param setKr the setKr to set
+	 */
+	public Material setKr(Double3 kr) 
+	{
+		Kr = kr;
+		return this;
+	}
+
 
 	/**
 	 * @param nShininess the nShininess to set

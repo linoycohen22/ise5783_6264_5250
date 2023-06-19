@@ -22,6 +22,10 @@ public class Camera {
 	private static final String RENDER_CLASS = "Camera";
 	private static final String IMAGE_WRITER_COMPONENT = "Image writer";
 	
+	private Camera camera;
+	private int numOfRays;
+	
+	
 	public ImageWriter getImageWriter() {
 		return imageWriter;
 	}
@@ -300,4 +304,32 @@ public class Camera {
 
 		imageWriter.writeToImage();
 	}
+	/**
+	 * A seter function for parameter rayTracer
+	 * this function return the object - this for builder pattern
+	 * 
+	 * @author Linoy Cohen and Yedida Cohen
+	 * @param rayTracer RayTracerBase value
+	 * */
+	public Camera setNumOfRays(int numOfRays)
+	{
+		if(numOfRays == 0)
+			this.numOfRays=1;
+		else
+		 this.numOfRays = numOfRays;
+		return this;
+	}
+	/**
+	 * A seter function for parameter camera
+	 * this function return the object - this for builder pattern
+	 * 
+	 * @author Linoy Cohen and Yedida Cohen
+	 * @param camera Camera value
+	 * */
+	public Camera setCamera(Camera camera)
+	{
+		this.camera = camera;
+		return this;
+	}
+
 }

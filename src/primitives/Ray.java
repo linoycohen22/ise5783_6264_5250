@@ -1,24 +1,67 @@
 package primitives;
+
 import java.util.List;
-import geometries.Intersectable.GeoPoint;
-
-
-public class Ray {
-
-	Point p0;
-	Vector dir;
-
-	/**
-	 * ray constructor
+import java.util.Objects;
+import geometries.Intersectable.GeoPoint; 
+public class Ray  
+{
+	 Point p0;
+	 Vector dir;
+	 /**
+	  * A constant that expresses the size of the first rays
+	  */
+	private static final double DELTA = 0.1;
+	
+	public Point getp0() 
+	{
+		return p0;
+	}
+	public Vector getDir() 
+	{
+		return dir;
+	}
+	
+	public Ray(Point p0, Vector dir) 
+	{
+		super();
+		this.p0 = p0;
+		this.dir = dir.normalize();
+	}
+	
+	/***
+	 * A builder that receives a dot and two vectors and moves the beam head on the normal geometry line in the direction of the new beam
+	 * @param head
+	 * @param lightDirection
+	 * @param n
 	 */
-	public Ray(Point p,Vector d){
-		p0 = p;
-		dir = d.normalize();
+	
+	public Ray(Point head, Vector lightDirection, Vector n) 
+	{
+		if(Util.alignZero(lightDirection.dotProduct(n)) < 0)
+			 p0= head.add(n.scale(-DELTA));
+		else if(Util.alignZero(lightDirection.dotProduct(n)) > 0)
+			 p0= head.add(n.scale(DELTA));
+		else if(Util.isZero(lightDirection.dotProduct(n)))
+			 p0=head;
+		dir=lightDirection;
+		dir.normalize();		
 	}
 
+	
 	/**
-	 * overrides 'equals'
+	 * returns a general point on the ray (according to 't')
 	 */
+	public Point getPoint(double t) {
+		Point retP = this.p0.add(dir.scale(t));
+		return retP;
+	}
+
+	
+	@Override
+	public String toString() 
+	{
+		return "Ray [p0=" + p0 + ", dir=" + dir + "]";
+	}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -28,34 +71,14 @@ public class Ray {
 		if (getClass() != obj.getClass())
 			return false;
 		Ray other = (Ray) obj;
-		return this.dir.equals(other.dir) && this.p0.equals(other.p0);
-	}
-
-	/**
-	 * overrides 'toString'
-	 */
-	@Override
-	public String toString() {
-		return "Ray [p0=" + p0 + ", dir=" + dir + "]";
-	}
-	public Point getPoint(double t) throws IllegalArgumentException
-	{
-		return p0.add(dir.scale(t));
-	}
-	public Vector getDir() 
-	{
-		return dir.normalize();
+		return Objects.equals(dir, other.dir) && Objects.equals(p0, other.p0);
 	}
 	
-	public Point getp0() {
-		// TODO Auto-generated method stub
-		return p0;
-	}
 	/**
 	 * The function returns the point closest to the beginning of the beam
 	 * from all the intersection points of the resulting list.
 	 * 
-	 * @author linoy and yedida
+	 * @author Linoy Cohen and Yedida Cohen
 	 * @param points List<Point> value
 	 * @return Point value
 	 * */
@@ -65,14 +88,23 @@ public class Ray {
 	    return points == null || points.isEmpty() ? null
 	           : getClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point;
 	}
-	/**
-	 * The function returns the point closest to the beginning of the beam
-	 * from all the intersection points of the resulting list.
-	 * 
-	 * @author linoy and yedida
-	 * @param points List<GeoPoint> value
-	 * @return Point value
-	 * */
+
+	
+	
+	
+	/*public Point findClosestPoint (List<Point> points)
+	{
+		if(points == null)
+			return null;
+		Point closet = points.get(0);
+		for (Point point : points) 
+		{
+			if(point.distance(p0) < closet.distance(p0))
+				closet= point;
+		}
+		return closet;
+	}*/
+	
 	
 	public GeoPoint getClosestGeoPoint(List<GeoPoint> intersections)
 	{
@@ -88,4 +120,5 @@ public class Ray {
 		}
 		return closet;
 	}
+	
 }
