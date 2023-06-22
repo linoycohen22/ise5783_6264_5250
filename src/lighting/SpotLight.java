@@ -32,12 +32,4 @@ public class SpotLight extends PointLight
 			return Color.BLACK;
 		return super.getIntensity(p).scale(pl);
 	}
-
-	public void setNarrowBeam(double angle) {
-//	    // Calculate the new direction vector based on the angle
-//	    Vector newDirection = direction.scale(Math.cos(Math.toRadians(angle)));
-//	    
-//	    // Update the direction vector
-//	    direction = newDirection.normalize();
-	}
 }

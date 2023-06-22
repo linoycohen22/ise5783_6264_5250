@@ -5,10 +5,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 
-import primitives.Point;
-import primitives.Ray;
+import primitives.*;
 
 /**
  * Class for the Collection of Bodies in the Scene

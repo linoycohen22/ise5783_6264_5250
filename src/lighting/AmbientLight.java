@@ -4,8 +4,7 @@ import primitives.Color;
 import primitives.Double3;
 
 public class AmbientLight extends Light {
-	private Color Ia; //the color
-	private double Ka; //מקדם ההנחתה
+	
 	public static final AmbientLight NONE = new AmbientLight(Color.BLACK, Double3.ZERO);
 
 	/**

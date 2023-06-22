@@ -33,8 +33,8 @@ public class ShadowTests {
                        new SpotLight(new Color(400, 240, 0), spotLocation, new Vector(1, 1, -3)) //
                           .setKL(1E-5).setKQ(1.5E-7));
       camera.setImageWriter(new ImageWriter(pictName, 400, 400)) //
-         .renderImage() //
-         .writeToImage();
+         .renderImage(); //
+         camera.writeToImage();
    }
 
    /** Produce a picture of a sphere and triangle with point light and shade */
@@ -103,8 +103,8 @@ public class ShadowTests {
                           .setKL(4E-4).setKQ(2E-5));
 
       camera.setImageWriter(new ImageWriter("shadowTrianglesSphere", 600, 600)) //
-         .renderImage() //
-         .writeToImage();
+         .renderImage();//
+         camera.writeToImage();
    }
 
 }

@@ -1,11 +1,9 @@
 package geometries;
-import static primitives.Util.alignZero;
 import static primitives.Util.*;
 
 import java.util.List;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
+
 /**
  * @author linoy cohen and yedida cohen
  * Class for Triangle
@@ -15,9 +13,9 @@ public class Triangle extends Polygon
 	/**
 	 * Constructor that receives 3 points and calls to the constructor of the base class
 	 * 
-	 * @param p1 Point3D
-	 * @param p2 Point3D
-	 * @param p3 Point3D
+	 * @param p1 Point
+	 * @param p2 Point
+	 * @param p3 Point
 	 * @throws Exception 
 	 * */
 	public Triangle(Point p1,Point p2,Point p3) //throws Exception 
@@ -72,14 +70,6 @@ public class Triangle extends Polygon
 
 			v1 = v2; //for the next round
 		}
-	/*	double nv =  plane.vector.dotProduct(ray.getDir());
-		Vector pSubtractP0 = plane.point.subtract(ray.getP0());
-		double t = alignZero((plane.vector.dotProduct(pSubtractP0))/nv);
-		 List<GeoPoint>  finish=new LinkedList<GeoPoint>();
-		 for(GeoPoint xxx:planeIntersections)
-			 if(Util.alignZero(t-maxdistance)<=0)
-				 finish.add(xxx);*/
-
 		//if the func not return null than we have Intersections with the polygon
 		return planeIntersections.stream().map(gp->new GeoPoint(this,gp.point)).toList();
 	}	

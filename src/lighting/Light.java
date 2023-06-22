@@ -3,7 +3,8 @@ import primitives.Color;
 import primitives.Point;
 
 public class Light {
-	   private Color intensity;
+	 
+	private Color intensity;
 	   /**
 		 * constructor for light
 		 * 

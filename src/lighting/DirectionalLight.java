@@ -12,6 +12,7 @@ import primitives.Vector;
  * @author linoy and yedida
  */
 public class DirectionalLight extends Light implements LightSource {
+
 	private Vector direction;
 
 	/**

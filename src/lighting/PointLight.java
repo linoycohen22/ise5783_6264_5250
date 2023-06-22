@@ -5,6 +5,7 @@ import primitives.Point;
 import primitives.Vector;
 
 public class PointLight extends Light implements LightSource {
+	
 	private Point position;
 	private double KC = 1;
 	private double KL = 0;

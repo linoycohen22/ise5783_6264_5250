@@ -46,6 +46,7 @@ public class Material
 		KD=new Double3(kD);
 		return this;
 	}
+	
 	public Material setKD(Double3 kD) 
 	{
 		KD = kD;

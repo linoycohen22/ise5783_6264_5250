@@ -1,10 +1,7 @@
 package geometries;
 
-import java.util.List;
 
-import primitives.Point;
-import primitives.Vector;
-import primitives.Ray;
+import primitives.*;
 
 public class Cylinder extends Tube{
 

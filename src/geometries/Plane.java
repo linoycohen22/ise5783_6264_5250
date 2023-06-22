@@ -1,10 +1,7 @@
 package geometries;
-import java.util.LinkedList;
 import java.util.List;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Util;
-import primitives.Vector;
+import primitives.*;
+
 
 import static  primitives.Util.isZero;
 import static primitives.Util.alignZero;

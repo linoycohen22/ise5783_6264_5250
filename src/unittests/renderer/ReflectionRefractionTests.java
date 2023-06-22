@@ -39,8 +39,8 @@ public class ReflectionRefractionTests {
 
       camera.setImageWriter(new ImageWriter("refractionTwoSpheres", 500, 500)) //
          .setRayTrace(new RayTracerBasic(scene)) //
-         .renderImage() //
-         .writeToImage();
+         .renderImage(); //
+         camera.writeToImage();
    }
 
    /** Produce a picture of a sphere lighted by a spot light */
@@ -72,8 +72,8 @@ public class ReflectionRefractionTests {
       ImageWriter imageWriter = new ImageWriter("reflectionTwoSpheresMirrored", 500, 500);
       camera.setImageWriter(imageWriter) //
          .setRayTrace(new RayTracerBasic(scene)) //
-         .renderImage() //
-         .writeToImage();
+         .renderImage(); //
+         camera.writeToImage();
    }
 
    /** Produce a picture of a two triangles lighted by a spot light with a
@@ -101,7 +101,7 @@ public class ReflectionRefractionTests {
       ImageWriter imageWriter = new ImageWriter("refractionShadow", 600, 600);
       camera.setImageWriter(imageWriter) //
          .setRayTrace(new RayTracerBasic(scene)) //
-         .renderImage() //
-         .writeToImage();
+         .renderImage(); //
+         camera.writeToImage();
    }
 }
